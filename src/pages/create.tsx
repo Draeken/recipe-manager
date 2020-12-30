@@ -1,16 +1,14 @@
 import AppBar from '../components/AppBar';
+import AppLayout from '../components/AppLayout';
 import LayoutHorHMH from '../components/LayoutHorHMH';
 
 const Create = () => {
   return (
-    <>
+    <AppLayout>
       <AppBar />
       <LayoutHorHMH>
-        <div>tata</div>
-        <div>titi</div>
-        <div>toto</div>
       </LayoutHorHMH>
-    </>
+    </AppLayout>
   );
 };
 
