@@ -7,6 +7,9 @@ const Create = () => {
     <AppLayout>
       <AppBar />
       <LayoutHorHMH>
+        <div>helper right</div>
+        
+        <div>helper left</div>
       </LayoutHorHMH>
     </AppLayout>
   );

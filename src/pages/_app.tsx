@@ -1,4 +1,7 @@
 import { useEffect } from 'react';
+import { Provider } from 'react-redux'
+
+import store from '../store'
 import { globalStyles } from '../shared/styles';
 
 const useSameClientHeight = () => {
@@ -13,10 +16,10 @@ const useSameClientHeight = () => {
 const App = ({ Component, pageProps }) => {
   useSameClientHeight();
   return (
-    <>
+    <Provider store={store}>
       {globalStyles}
       <Component {...pageProps} />
-    </>
+    </Provider>
   );
 };
 
