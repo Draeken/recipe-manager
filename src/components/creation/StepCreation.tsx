@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Field, Form, Formik } from 'formik';
 
-const RecipeCreation = ({  }) => {
+const StepCreation = ({  }) => {
   const router = useRouter();
   const query = router.query;
   return (
@@ -23,4 +23,4 @@ const RecipeCreation = ({  }) => {
   );
 };
 
-export default RecipeCreation;
+export default StepCreation;
