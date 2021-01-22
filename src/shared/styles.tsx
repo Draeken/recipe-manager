@@ -1,22 +1,10 @@
-import { css, Global } from '@emotion/react';
+import { createMuiTheme } from '@material-ui/core/styles';
 
-export const globalStyles = (
-  <Global
-    styles={css`
-      html,
-      body {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        background: papayawhip;
-        min-height: 100%;
-        font-family: Helvetica, Arial, sans-serif;
-        font-size: 24px;
-      }
-      body > div:first-child,
-      div#__next {
-        height: 100%;
-      }
-    `}
-  />
-);
+export const colors = {
+  paper: {
+    background: '#000000F',
+    onBackground: '#FFFFFFF',
+  },
+};
+
+export const theme = createMuiTheme({});

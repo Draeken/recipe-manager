@@ -1,4 +1,4 @@
-import AppBar from '../../../../components/AppBar';
+import AppBar from '../../../../components/TopBar/AppBar';
 import AppLayout from '../../../../components/AppLayout';
 import StepCreation from '../../../../components/creation/StepCreation';
 import LayoutHorHMH from '../../../../components/LayoutHorHMH';

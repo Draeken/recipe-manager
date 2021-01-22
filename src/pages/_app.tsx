@@ -1,8 +1,10 @@
+import type { AppProps } from 'next/app';
+import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { useEffect } from 'react';
-import { Provider } from 'react-redux'
-
-import store from '../store'
-import { globalStyles } from '../shared/styles';
+import { Provider } from 'react-redux';
+import { theme } from '../shared/styles';
+import store from '../store';
 
 const useSameClientHeight = () => {
   useEffect(() => {
@@ -13,12 +15,21 @@ const useSameClientHeight = () => {
   }, []);
 };
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
   useSameClientHeight();
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      (jssStyles.parentElement as Element).removeChild(jssStyles);
+    }
+  }, []);
   return (
     <Provider store={store}>
-      {globalStyles}
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </Provider>
   );
 };

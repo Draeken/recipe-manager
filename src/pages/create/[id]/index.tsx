@@ -1,7 +1,7 @@
-import AppBar from '../../components/AppBar';
-import AppLayout from '../../components/AppLayout';
-import RecipeCreation from '../../components/creation/RecipeCreation';
-import LayoutHorHMH from '../../components/LayoutHorHMH';
+import AppBar from '../../../components/TopBar/AppBar';
+import AppLayout from '../../../components/AppLayout';
+import RecipeCreation from '../../../components/creation/RecipeCreation';
+import LayoutHorHMH from '../../../components/LayoutHorHMH';
 
 const Create = ({ query }) => {
   console.log(query);
