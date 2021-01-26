@@ -1,13 +1,17 @@
-import AppBar from '../../../components/TopBar/AppBar';
 import AppLayout from '../../../components/AppLayout';
 import RecipeCreation from '../../../components/creation/RecipeCreation';
 import LayoutHorHMH from '../../../components/LayoutHorHMH';
+import AppBarRM from '../../../components/TopBar/AppBar';
 
-const Create = ({ query }) => {
+interface CreateProp {
+  query: string;
+}
+
+const Create = ({ query }: CreateProp) => {
   console.log(query);
   return (
     <AppLayout>
-      <AppBar />
+      <AppBarRM title="Recipe Creation" />
       <LayoutHorHMH>
         <div>helper right</div>
         <RecipeCreation />

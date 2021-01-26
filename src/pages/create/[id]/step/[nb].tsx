@@ -3,7 +3,11 @@ import AppLayout from '../../../../components/AppLayout';
 import StepCreation from '../../../../components/creation/StepCreation';
 import LayoutHorHMH from '../../../../components/LayoutHorHMH';
 
-const AddStep = ({ query }) => {
+interface AddStepProps {
+  query: string;
+}
+
+const AddStep = ({ query }: AddStepProps) => {
   console.log(query);
   return (
     <AppLayout>

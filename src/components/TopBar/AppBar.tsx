@@ -1,23 +1,16 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar } from '@material-ui/core';
 
-import { colors } from '../../shared/styles';
-import Breadcrumb from './Breadcrumb';
+interface AppBarRMProps {
+  title: string;
+}
 
-const styles = makeStyles({
-  root: {
-    height: 48,
-    backgroundColor: colors.paper.background,
-    color: colors.paper.onBackground,
-  },
-});
-
-const AppBar = ({}) => {
-  const classes = styles();
+const AppBarRM = ({ title }: AppBarRMProps) => {
+  console.log('appBar');
   return (
-    <header className={classes.root}>
-      <Breadcrumb />
-    </header>
+    <AppBar position="static">
+      <Toolbar>{title}</Toolbar>
+    </AppBar>
   );
 };
 
-export default AppBar;
+export default AppBarRM;

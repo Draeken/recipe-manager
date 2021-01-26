@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 
 type RouterComponents = { components: Array<{ Component: { name: string } }> };
 
-const Breadcrumb = ({}) => {
+const Breadcrumb = () => {
   const router = useRouter();
   const path = router.pathname;
   if (!path || !((router as unknown) as RouterComponents).components) {
