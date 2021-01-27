@@ -1,4 +1,4 @@
-import AppBar from '../../../../components/TopBar/AppBar';
+import AppBarRM from '../../../../components/TopBar/AppBar';
 import AppLayout from '../../../../components/AppLayout';
 import StepCreation from '../../../../components/creation/StepCreation';
 import LayoutHorHMH from '../../../../components/LayoutHorHMH';
@@ -11,7 +11,7 @@ const AddStep = ({ query }: AddStepProps) => {
   console.log(query);
   return (
     <AppLayout>
-      <AppBar />
+      <AppBarRM />
       <LayoutHorHMH>
         <div>helper right</div>
         <StepCreation />
