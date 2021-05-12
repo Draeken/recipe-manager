@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@recipes-manager/data-store/*": [
+        "libs/recipes-manager/data-store/src/*"
+      ],
+      "@recipes-manager/ui/*": ["libs/recipes-manager/ui/src/*"],
+      "@recipes-manager/draeken/*": ["libs/draeken/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

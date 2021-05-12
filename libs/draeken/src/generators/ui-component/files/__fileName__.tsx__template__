@@ -1,0 +1,51 @@
+import { css } from '@emotion/core';
+import React from 'react';
+import { merge, mergeProps, pipe } from '@recipes-manager/utils';
+import { ThemeContext } from '';
+
+export interface <%= className %>Props {
+
+}
+
+type <%= className %>PropsExtended = <%= className %>Props & React.HTMLAttributes<HTMLDivElement>;
+
+export interface <%= className %>Theme {
+  <%= propertyName %>: {
+
+  }
+}
+
+const defaultTheme = pipe(
+  (theme: any) =>
+    merge(
+      {
+        <%= propertyName %>: {
+
+        } as <%= className %>Theme
+      },
+      theme
+    )
+)
+
+const rootClass = (theme: <%= className %>Theme) => {
+  const base = css`
+  `;
+  return { css: base };
+}
+
+export const <%= className %>: React.FunctionComponent<<%= className %>PropsExtended> = React.forwardRef(
+  (props: <%= className %>PropsExtended, forwardedRef) => {
+    const {
+      ...defaultHostProps
+    } = props;
+    const theme = defaultTheme(React.useContext(ThemeContext));
+    const hostProps = mergeProps(
+      rootClass(theme),
+      defaultHostProps
+    );
+    return (
+      <div ref={forwardedRef} {...hostProps}>
+      </div>
+    )
+  }
+)

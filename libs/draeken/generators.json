@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "name": "draeken",
+  "version": "0.0.1",
+  "generators": {
+    "ui-component": {
+      "factory": "./src/generators/ui-component/generator",
+      "schema": "./src/generators/ui-component/schema.json",
+      "description": "ui-component generator"
+    }
+  }
+}

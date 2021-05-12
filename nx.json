@@ -20,11 +20,24 @@
   },
   "projects": {
     "recipes-manager": {
-      "tags": []
+      "tags": ["app"]
     },
     "recipes-manager-e2e": {
-      "tags": [],
+      "tags": ["app"],
       "implicitDependencies": ["recipes-manager"]
+    },
+    "recipes-manager-data-store": {
+      "tags": ["lib", "lib:data"]
+    },
+    "recipes-manager-ui": {
+      "tags": ["lib", "lib:ui"]
+    },
+    "draeken": {
+      "tags": []
+    },
+    "draeken-e2e": {
+      "tags": [],
+      "implicitDependencies": ["draeken"]
     }
   }
 }
