@@ -1,13 +1,13 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import React from 'react';
-import { merge, mergeProps, pipe } from '@recipes-manager/utils';
-import { ThemeContext } from '';
+import { merge, mergeProps, pipe } from '@recipes-manager/util';
+import { ThemeContext } from '../../theme';
 
 export interface <%= className %>Props {
 
 }
 
-type <%= className %>PropsExtended = <%= className %>Props & React.HTMLAttributes<HTMLDivElement>;
+type <%= className %>PropsExtended = <%= className %>Props & React.ComponentPropsWithRef<'div'>;
 
 export interface <%= className %>Theme {
   <%= propertyName %>: {
@@ -33,7 +33,7 @@ const rootClass = (theme: <%= className %>Theme) => {
   return { css: base };
 }
 
-export const <%= className %>: React.FunctionComponent<<%= className %>PropsExtended> = React.forwardRef(
+export const <%= className %> = React.forwardRef<HTMLDivElement, <%= className %>PropsExtended>(
   (props: <%= className %>PropsExtended, forwardedRef) => {
     const {
       ...defaultHostProps
