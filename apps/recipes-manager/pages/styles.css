@@ -1,8 +1,11 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
 .app {
-  font-family: sans-serif;
   min-width: 300px;
-  max-width: 600px;
-  margin: 50px auto;
+  margin: 0 auto;
 }
 
 .app .gutter-left {

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { AppBar } from '@recipes-manager/ui';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
@@ -51,20 +52,23 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
   });
   const onSubmit = (data) => console.log(data);
   return (
-    <StyledRecipesManagerFeatureCreation>
-      <h1>Welcome to recipes-manager-feature-creation!</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="Names" {...register('Names', {})} />
-        <input type="text" placeholder="Family" {...register('Family', {})} />
-        <input type="text" placeholder="Language" {...register('Language', {})} />
-        <input type="number" placeholder="Serving" {...register('Serving', {})} />
+    <>
+      <AppBar name={'Recipe Creation'} />
+      <StyledRecipesManagerFeatureCreation>
+        <h1>Welcome to recipes-manager-feature-creation!</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input type="text" placeholder="Names" {...register('Names', {})} />
+          <input type="text" placeholder="Family" {...register('Family', {})} />
+          <input type="text" placeholder="Language" {...register('Language', {})} />
+          <input type="number" placeholder="Serving" {...register('Serving', {})} />
 
-        <FieldArray {...{ control, register, getValues, setValue }} />
+          <FieldArray {...{ control, register, getValues, setValue }} />
 
-        <button>add step</button>
-        <input type="submit" />
-      </form>
-    </StyledRecipesManagerFeatureCreation>
+          <button>add step</button>
+          <input type="submit" />
+        </form>
+      </StyledRecipesManagerFeatureCreation>
+    </>
   );
 }
 

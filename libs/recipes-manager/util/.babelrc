@@ -4,9 +4,13 @@
       "@nrwl/react/babel",
       {
         "runtime": "automatic",
-        "useBuiltIns": "usage"
+        "useBuiltIns": "usage",
+        "preset-react": {
+          "runtime": "automatic",          
+          "importSource": "@emotion/react"   
+        }
       }
     ]
   ],
-  "plugins": []
+  "plugins": ["@emotion/babel-plugin"]
 }

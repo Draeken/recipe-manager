@@ -5,7 +5,11 @@
       {
         "runtime": "automatic",
         "useBuiltIns": "usage",
-        "importSource": "@emotion/react"
+        "importSource": "@emotion/react",
+        "preset-react": {
+          "runtime": "automatic",
+          "importSource": "@emotion/react"
+        }
       }
     ]
   ],

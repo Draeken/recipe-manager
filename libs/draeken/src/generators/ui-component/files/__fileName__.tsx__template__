@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import { css } from '@emotion/react';
 import React from 'react';
 import { merge, mergeProps, pipe } from '@recipes-manager/util';
@@ -21,15 +23,16 @@ const defaultTheme = pipe(
       {
         <%= propertyName %>: {
 
-        } as <%= className %>Theme
-      },
+        }
+      } as <%= className %>Theme,
       theme
     )
 )
 
-const rootClass = (theme: <%= className %>Theme) => {
-  const base = css`
-  `;
+const rootClass = ({ <%= propertyName %> }: <%= className %>Theme) => {
+  const base = css({
+
+  });
   return { css: base };
 }
 
