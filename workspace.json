@@ -25,9 +25,7 @@
       "targets": {
         "build": {
           "executor": "@nrwl/next:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "root": "apps/recipes-manager",
             "outputPath": "dist/apps/recipes-manager"
@@ -57,9 +55,7 @@
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/recipes-manager"
-          ],
+          "outputs": ["coverage/apps/recipes-manager"],
           "options": {
             "jestConfig": "apps/recipes-manager/jest.config.js",
             "passWithNoTests": true
@@ -68,9 +64,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/recipes-manager/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["apps/recipes-manager/**/*.{ts,tsx,js,jsx}"]
           }
         }
       }
@@ -96,9 +90,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/recipes-manager-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/recipes-manager-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -111,9 +103,7 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/recipes-manager/data-store/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/recipes-manager/data-store/**/*.{ts,tsx,js,jsx}"]
           }
         }
       }
@@ -126,16 +116,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/recipes-manager/ui/**/*.{ts,tsx,js,jsx}"
-            ]
+            "lintFilePatterns": ["libs/recipes-manager/ui/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/recipes-manager/ui"
-          ],
+          "outputs": ["coverage/libs/recipes-manager/ui"],
           "options": {
             "jestConfig": "libs/recipes-manager/ui/jest.config.js",
             "passWithNoTests": true
@@ -151,16 +137,12 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/draeken/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/draeken/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/draeken"
-          ],
+          "outputs": ["coverage/libs/draeken"],
           "options": {
             "jestConfig": "libs/draeken/jest.config.js",
             "passWithNoTests": true
@@ -168,9 +150,7 @@
         },
         "build": {
           "executor": "@nrwl/node:package",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/libs/draeken",
             "tsConfig": "libs/draeken/tsconfig.lib.json",
@@ -215,6 +195,48 @@
             "npmPackageName": "@recipes-manager/draeken",
             "pluginOutputPath": "dist/libs/draeken",
             "jestConfig": "apps/draeken-e2e/jest.config.js"
+          }
+        }
+      }
+    },
+    "recipes-manager-feature-creation": {
+      "root": "libs/recipes-manager/feature-creation",
+      "sourceRoot": "libs/recipes-manager/feature-creation/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/feature-creation/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager/feature-creation"],
+          "options": {
+            "jestConfig": "libs/recipes-manager/feature-creation/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "recipes-manager-util": {
+      "root": "libs/recipes-manager/util",
+      "sourceRoot": "libs/recipes-manager/util/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/util/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager/util"],
+          "options": {
+            "jestConfig": "libs/recipes-manager/util/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

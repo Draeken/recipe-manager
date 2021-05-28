@@ -76,7 +76,7 @@ Output:
 // Condition
 {
   names: {
-    en: ["put"]
+    en: ["cooked"]
   },
   description: {
     en: "wait it to cook $$0", //$$ -> arg

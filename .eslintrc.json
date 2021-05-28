@@ -17,12 +17,12 @@
                 "onlyDependOnLibsWithTags": ["lib"]
               },
               {
-                "sourceTag": "lib",
-                "onlyDependOnLibsWithTags": ["lib"]
+                "sourceTag": "lib:ui",
+                "onlyDependOnLibsWithTags": ["lib:ui"]
               },
               {
-                "sourceTag": "lib:ui",
-                "onlyDependOnLibsWithTags": ["luib:ui"]
+                "sourceTag": "lib:feature",
+                "onlyDependOnLibsWithTags": ["lib:ui", "lib:data"]
               },
               {
                 "sourceTag": "*",

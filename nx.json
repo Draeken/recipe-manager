@@ -38,6 +38,12 @@
     "draeken-e2e": {
       "tags": [],
       "implicitDependencies": ["draeken"]
+    },
+    "recipes-manager-feature-creation": {
+      "tags": ["lib", "lib:feature"]
+    },
+    "recipes-manager-util": {
+      "tags": ["lib", "lib:util"]
     }
   }
 }

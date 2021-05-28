@@ -15,11 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@recipes-manager/data-store/*": [
-        "libs/recipes-manager/data-store/src/*"
+      "@recipes-manager/data-store/*": ["libs/recipes-manager/data-store/src/*"],
+      "@recipes-manager/ui/*": ["libs/recipes-manager/ui/src/lib/*"],
+      "@recipes-manager/draeken/*": ["libs/draeken/*"],
+      "@recipes-manager/main-feature-creation": [
+        "libs/recipes-manager/feature-creation/src/index.ts"
       ],
-      "@recipes-manager/ui/*": ["libs/recipes-manager/ui/src/*"],
-      "@recipes-manager/draeken/*": ["libs/draeken/*"]
+      "@recipes-manager/util": ["libs/recipes-manager/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
