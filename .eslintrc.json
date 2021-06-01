@@ -14,7 +14,7 @@
             "depConstraints": [
               {
                 "sourceTag": "app",
-                "onlyDependOnLibsWithTags": ["lib:feature"]
+                "onlyDependOnLibsWithTags": ["lib"]
               },
               {
                 "sourceTag": "lib:ui",

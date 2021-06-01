@@ -92,7 +92,7 @@ Output:
 //recipe object
 //all units should be homogeneous. users may display a different unit. conversion is managed by the frontend
 {
-  names: ['recipe name'],
+  names: 'recipe name', /* unique name -> variant are stored in class definition */
   class: classRef,
   lang: 'fr',
   quantity: {

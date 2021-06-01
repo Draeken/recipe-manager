@@ -49,12 +49,10 @@ export const palette: PaletteTheme['palette'] = {
 
 export interface PaletteTheme {
   palette: {
-    primary: PaletteColor;
-    secondary: PaletteColor;
-    surface: PaletteSurface;
+    primary?: PaletteColor;
+    secondary?: PaletteColor;
+    surface?: PaletteSurface;
   };
 }
 
-export const ThemeContext = createContext({
-  palette,
-});
+export const ThemeContext = createContext({});

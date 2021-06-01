@@ -1,4 +1,4 @@
-import { AppBar, CmpCard, LayoutMain } from '@recipes-manager/ui';
+import { AppBar, CmpCard, FormText, LayoutMain } from '@recipes-manager/ui';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
@@ -52,9 +52,8 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
       inlineStart={[]}
       main={
         <CmpCard>
-          <h1>Welcome to recipes-manager-feature-creation!</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Names" {...register('Names', {})} />
+            <FormText type="text" placeholder="Names" {...register('Names', {})} />
             <input type="text" placeholder="Family" {...register('Family', {})} />
             <input type="text" placeholder="Language" {...register('Language', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />

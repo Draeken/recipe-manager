@@ -27,7 +27,7 @@ interface TypographyAttribte {
   LetterSpacing: string;
 }
 
-interface TypographyScale {
+export interface TypographyScale {
   H1: TypographyAttribte;
   H2: TypographyAttribte;
   H3: TypographyAttribte;
