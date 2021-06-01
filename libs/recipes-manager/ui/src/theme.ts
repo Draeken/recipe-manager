@@ -1,7 +1,5 @@
 import { createContext } from 'react';
 
-export const ThemeContext = createContext({});
-
 export interface PaletteColor {
   main: string;
   lightVariant: string;
@@ -34,8 +32,8 @@ export interface PaletteSurface {
 }
 
 export const paletteSurface: PaletteSurface = {
-  main: '#424242',
-  background: '#232321',
+  main: '#000000',
+  background: '#FFFFFF',
   on: '#FFFFFF',
   baseEmphase: '#FFFFFF',
   highEmphase: 'DD',
@@ -56,3 +54,7 @@ export interface PaletteTheme {
     surface: PaletteSurface;
   };
 }
+
+export const ThemeContext = createContext({
+  palette,
+});

@@ -4,18 +4,16 @@ import { css } from '@emotion/react';
 import { merge, mergeProps, pipe } from '@recipes-manager/util';
 import React from 'react';
 import { paletteSurface, PaletteTheme, ThemeContext } from '../../theme';
-import { Typography } from '../typography/Typography';
 
-export interface AppBarProps {
-  name: string;
-}
+export interface CmpCardProps {}
 
-type AppBarPropsExtended = AppBarProps & React.ComponentPropsWithRef<'div'>;
+type CmpCardPropsExtended = CmpCardProps & React.ComponentPropsWithRef<'div'>;
 
-export interface AppBarTheme {
-  appBar: {
-    height: number;
+export interface CmpCardTheme {
+  cmpCard: {
+    padding: number;
     backgroundColor: string;
+    color: string;
   };
 }
 
@@ -24,31 +22,33 @@ const defaultTheme = pipe(
   (theme: PaletteTheme) =>
     merge(
       {
-        appBar: {
-          height: 58,
+        cmpCard: {
+          padding: 16,
           backgroundColor: theme.palette.surface.main,
+          color: theme.palette.surface.on,
         },
-      } as AppBarTheme,
+      } as CmpCardTheme,
       theme
     )
 );
 
-const rootClass = ({ appBar }: AppBarTheme) => {
+const rootClass = ({ cmpCard }: CmpCardTheme) => {
   const base = css({
-    height: appBar.height,
-    backgroundColor: appBar.backgroundColor,
+    padding: cmpCard.padding,
+    backgroundColor: cmpCard.backgroundColor,
+    color: cmpCard.color,
   });
   return { css: base };
 };
 
-export const AppBar = React.forwardRef<HTMLDivElement, AppBarPropsExtended>(
-  (props: AppBarPropsExtended, forwardedRef) => {
-    const { name, ...defaultHostProps } = props;
+export const CmpCard = React.forwardRef<HTMLDivElement, CmpCardPropsExtended>(
+  (props: CmpCardPropsExtended, forwardedRef) => {
+    const { children, ...defaultHostProps } = props;
     const theme = defaultTheme(React.useContext(ThemeContext));
     const hostProps = mergeProps(rootClass(theme), defaultHostProps);
     return (
       <div ref={forwardedRef} {...hostProps}>
-        <Typography scale={'H3'}>{name}</Typography>
+        {children}
       </div>
     );
   }
