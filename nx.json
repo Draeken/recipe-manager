@@ -44,6 +44,12 @@
     },
     "recipes-manager-util": {
       "tags": ["lib", "lib:util"]
+    },
+    "recipes-manager-data-auth": {
+      "tags": ["lib", "lib:data"]
+    },
+    "recipes-manager-feature-index": {
+      "tags": ["lib", "lib:feature"]
     }
   }
 }

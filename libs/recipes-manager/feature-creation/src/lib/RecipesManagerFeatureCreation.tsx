@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from '@emotion/react';
 import { AppBar, CmpCard, FormText, LayoutMain } from '@recipes-manager/ui';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
@@ -41,22 +44,29 @@ const FieldArray = ({ control, register, setValue, getValues }) => {
   );
 };
 
+const formCss = css({
+  display: 'grid',
+  justifyContent: 'center',
+  gridTemplateColumns: 'repeat(2, min-content)',
+  gap: 16,
+});
+
 export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreationProps) {
-  const { control, register, handleSubmit, getValues, reset, setValue } = useForm({
+  const { control, register, handleSubmit, getValues, reset, setValue, watch } = useForm({
     mode: 'onBlur',
   });
   const onSubmit = (data) => console.log(data);
+  const recipeName = watch('name');
   return (
     <LayoutMain
-      appBar={<AppBar name={'Recipe Creation'} />}
+      appBar={<AppBar name={'Recipe Creation' + (recipeName ? `: ${recipeName}` : '')} />}
       inlineStart={[]}
       main={
         <CmpCard inlineBorder>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form css={formCss} onSubmit={handleSubmit(onSubmit)}>
             <FormText type="text" placeholder="Name" {...register('name', {})} />
             <FormText type="text" placeholder="Language" {...register('lang', {})} />
             <input type="text" placeholder="Family" {...register('Family', {})} />
-            <input type="text" placeholder="Language" {...register('Language', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />
 
             <FieldArray {...{ control, register, getValues, setValue }} />

@@ -55,9 +55,8 @@ const rootClass = ({ cmpCard }: CmpCardTheme, inlineBorder: boolean) => {
 
 export const CmpCard = React.forwardRef<HTMLDivElement, CmpCardPropsExtended>(
   (props: CmpCardPropsExtended, forwardedRef) => {
-    const { children, ...defaultHostProps } = props;
+    const { inlineBorder, children, ...defaultHostProps } = props;
     const theme = defaultTheme(React.useContext(ThemeContext));
-    const inlineBorder = props?.inlineBorder;
     const hostProps = mergeProps(rootClass(theme, inlineBorder), defaultHostProps);
     return (
       <div ref={forwardedRef} {...hostProps}>

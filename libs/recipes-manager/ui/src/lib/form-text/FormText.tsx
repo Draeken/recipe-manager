@@ -29,7 +29,7 @@ const defaultTheme = pipe(
         formText: {
           labelScale: 'Button',
           inputScale: 'Body1',
-          labelColorFocused: theme.palette.primary.lightVariant,
+          labelColorFocused: theme.palette.primary.darkVariant,
           underlineColor: theme.palette.primary.main,
           underlineColorFocused: theme.palette.primary.lightVariant,
           topLabelSpace: 15,

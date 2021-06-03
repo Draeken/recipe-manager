@@ -31,13 +31,16 @@
             "outputPath": "dist/apps/recipes-manager"
           },
           "configurations": {
-            "production": {}
+            "production": {},
+            "dev": {
+              "buildLibsFromSource": true
+            }
           }
         },
         "serve": {
           "executor": "@nrwl/next:server",
           "options": {
-            "buildTarget": "recipes-manager:build",
+            "buildTarget": "recipes-manager:build:dev",
             "dev": true
           },
           "configurations": {
@@ -236,6 +239,40 @@
           "outputs": ["coverage/libs/recipes-manager/util"],
           "options": {
             "jestConfig": "libs/recipes-manager/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "recipes-manager-data-auth": {
+      "root": "libs/recipes-manager/data-auth",
+      "sourceRoot": "libs/recipes-manager/data-auth/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/data-auth/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
+    "recipes-manager-feature-index": {
+      "root": "libs/recipes-manager/feature-index",
+      "sourceRoot": "libs/recipes-manager/feature-index/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/feature-index/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager/feature-index"],
+          "options": {
+            "jestConfig": "libs/recipes-manager/feature-index/jest.config.js",
             "passWithNoTests": true
           }
         }
