@@ -3,7 +3,7 @@
 import { css } from '@emotion/react';
 import { merge, mergeProps, pipe } from '@recipes-manager/util';
 import React from 'react';
-import { paletteSurface, PaletteTheme, ThemeContext } from '../../theme';
+import { paletteSurface, PaletteTheme, spacing, SpacingTheme, ThemeContext } from '../../theme';
 
 export interface LayoutMainProps {
   appBar: React.ReactElement;
@@ -22,12 +22,13 @@ export interface LayoutMainTheme {
 }
 
 const defaultTheme = pipe(
-  (theme: any) => merge({ palette: { surface: paletteSurface } } as PaletteTheme, theme),
-  (theme: PaletteTheme) =>
+  (theme: any) =>
+    merge({ palette: { surface: paletteSurface }, spacing } as PaletteTheme & SpacingTheme, theme),
+  (theme: PaletteTheme & SpacingTheme) =>
     merge(
       {
         layoutMain: {
-          padding: 16,
+          padding: theme.spacing.outerRim,
           backgroundColor: theme.palette.surface.background,
         },
       } as LayoutMainTheme,

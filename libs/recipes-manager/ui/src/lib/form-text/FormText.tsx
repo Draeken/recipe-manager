@@ -1,11 +1,10 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { TypographyScale } from '@recipes-manager/ui';
 import { merge, mergeProps, pipe } from '@recipes-manager/util';
 import React from 'react';
 import { palettePrimary, PaletteTheme, ThemeContext } from '../../theme';
-import { TypographyProps } from '../typography/Typography';
+import { TypographyProps, TypographyScale } from '../typography/Typography';
 
 export interface FormTextProps {}
 
@@ -108,17 +107,17 @@ export const FormText = React.forwardRef<HTMLInputElement, FormTextPropsExtended
     const hostProps = mergeProps(rootClass(theme));
     const inputProps = mergeProps(
       inputClass(theme),
-      TypographyProps({ scale: theme.formText.inputScale }),
+      TypographyProps({ scale: theme.formText.inputScale, theme }),
       defaultHostProps
     );
     const { name, placeholder } = defaultHostProps;
     const labelProps = mergeProps(
       labelClass(theme),
-      TypographyProps({ scale: theme.formText.labelScale })
+      TypographyProps({ scale: theme.formText.labelScale, theme })
     );
     return (
       <div {...hostProps}>
-        <input type="input" ref={forwardedRef} {...inputProps} />
+        <input id={name} type="input" ref={forwardedRef} {...inputProps} />
         <label htmlFor={name} {...labelProps}>
           {placeholder}
         </label>

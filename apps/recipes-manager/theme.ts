@@ -14,6 +14,16 @@ const paletteTheme: PaletteTheme = {
       lightVariant: '#aee571',
       on: '#000000',
     },
+    surface: {
+      background: '#FFFFFF',
+      main: '#FFFFFF',
+      on: '#000000',
+      baseEmphase: '#000000',
+      highEmphase: 'DD',
+      mediumEmphase: '99',
+      disabled: '61',
+    },
+    divider: '#00000099',
   },
 };
 

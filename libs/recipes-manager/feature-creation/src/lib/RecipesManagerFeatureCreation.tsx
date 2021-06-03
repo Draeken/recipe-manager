@@ -51,9 +51,10 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
       appBar={<AppBar name={'Recipe Creation'} />}
       inlineStart={[]}
       main={
-        <CmpCard>
+        <CmpCard inlineBorder>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormText type="text" placeholder="Names" {...register('Names', {})} />
+            <FormText type="text" placeholder="Name" {...register('name', {})} />
+            <FormText type="text" placeholder="Language" {...register('lang', {})} />
             <input type="text" placeholder="Family" {...register('Family', {})} />
             <input type="text" placeholder="Language" {...register('Language', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />

@@ -45,6 +45,7 @@ export const palette: PaletteTheme['palette'] = {
   primary: palettePrimary,
   secondary: paletteSecondary,
   surface: paletteSurface,
+  divider: paletteSurface.on + paletteSurface.highEmphase,
 };
 
 export interface PaletteTheme {
@@ -52,6 +53,19 @@ export interface PaletteTheme {
     primary?: PaletteColor;
     secondary?: PaletteColor;
     surface?: PaletteSurface;
+    divider?: string;
+  };
+}
+
+export const spacing: SpacingTheme['spacing'] = {
+  outerRim: 32,
+  mainPadding: 16,
+};
+
+export interface SpacingTheme {
+  spacing: {
+    outerRim: number;
+    mainPadding: number;
   };
 }
 
