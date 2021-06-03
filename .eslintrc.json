@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "app",
+                "onlyDependOnLibsWithTags": ["lib"]
+              },
+              {
+                "sourceTag": "lib:ui",
+                "onlyDependOnLibsWithTags": ["lib:ui", "lib:util"]
+              },
+              {
+                "sourceTag": "lib:feature",
+                "onlyDependOnLibsWithTags": ["lib:ui", "lib:data", "lib:util"]
+              },
+              {
+                "sourceTag": "lib:data",
+                "onlyDependOnLibsWithTags": ["lib:data", "lib:util"]
+              },
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {}
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "recipes-manager",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "recipes-manager": {
+      "tags": ["app"]
+    },
+    "recipes-manager-e2e": {
+      "tags": ["app"],
+      "implicitDependencies": ["recipes-manager"]
+    },
+    "recipes-manager-data-store": {
+      "tags": ["lib", "lib:data"]
+    },
+    "recipes-manager-ui": {
+      "tags": ["lib", "lib:ui"]
+    },
+    "draeken": {
+      "tags": []
+    },
+    "draeken-e2e": {
+      "tags": [],
+      "implicitDependencies": ["draeken"]
+    },
+    "recipes-manager-feature-creation": {
+      "tags": ["lib", "lib:feature"]
+    },
+    "recipes-manager-util": {
+      "tags": ["lib", "lib:util"]
+    }
+  }
+}
