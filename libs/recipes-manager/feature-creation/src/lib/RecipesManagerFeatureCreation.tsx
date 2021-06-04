@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/react';
 import { AppBar, CmpCard, FormText, LayoutMain } from '@recipes-manager/ui';
+import { RMProfile } from '@recipes-manager/ui-specific';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
@@ -59,7 +60,12 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
   const recipeName = watch('name');
   return (
     <LayoutMain
-      appBar={<AppBar name={'Recipe Creation' + (recipeName ? `: ${recipeName}` : '')} />}
+      appBar={
+        <AppBar
+          name={'Recipe Creation' + (recipeName ? `: ${recipeName}` : '')}
+          actions={[<RMProfile />]}
+        />
+      }
       inlineStart={[]}
       main={
         <CmpCard inlineBorder>

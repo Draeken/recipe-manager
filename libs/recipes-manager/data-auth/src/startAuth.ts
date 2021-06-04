@@ -1,21 +1,21 @@
-import { FirebaseApp } from '@firebase/app';
-import { EmailAuthProvider, getAuth, GoogleAuthProvider } from 'firebase/auth';
-declare const firebaseui: any;
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-export const startAuthDialog = (firebaseApp: FirebaseApp) => {
-  const auth = getAuth(firebaseApp);
-  const uiConfig = {
-    signInSuccessUrl: '/creation',
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      GoogleAuthProvider.PROVIDER_ID,
-      EmailAuthProvider.PROVIDER_ID,
-    ],
-  };
-
-  // Initialize the FirebaseUI Widget using Firebase.
-  const ui = new firebaseui.auth.AuthUI(auth);
-  // The start method will wait until the DOM is loaded.
-
-  ui.start('#firebaseui-auth-container', uiConfig);
+export const startAuthPopup = () => {
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential?.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+      console.log(user, token, credential?.idToken);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error('auth error', error, credential?.toJSON());
+    });
 };

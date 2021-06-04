@@ -22,11 +22,19 @@
               },
               {
                 "sourceTag": "lib:feature",
-                "onlyDependOnLibsWithTags": ["lib:ui", "lib:data", "lib:util"]
+                "onlyDependOnLibsWithTags": ["lib:ui", "lib:data", "lib:util", "lib:specific"]
               },
               {
                 "sourceTag": "lib:data",
                 "onlyDependOnLibsWithTags": ["lib:data", "lib:util"]
+              },
+              {
+                "sourceTag": "lib:specific",
+                "onlyDependOnLibsWithTags": ["lib:ui", "lib:data", "lib:util"]
+              },
+              {
+                "sourceTag": "lib:util",
+                "onlyDependOnLibsWithTags": []
               },
               {
                 "sourceTag": "*",

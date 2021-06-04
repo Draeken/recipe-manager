@@ -2,6 +2,7 @@
 
 import { css } from '@emotion/react';
 import { AppBar, CmpCard, LayoutMain } from '@recipes-manager/ui';
+import { RMProfile } from '@recipes-manager/ui-specific';
 import React from 'react';
 
 /* eslint-disable-next-line */
@@ -17,13 +18,9 @@ const formCss = css({
 export function RecipesManagerFeatureIndex(props: RecipesManagerFeatureIndexProps) {
   return (
     <LayoutMain
-      appBar={<AppBar name={'Recipes Manager'} />}
+      appBar={<AppBar name={'Recipes Manager'} actions={[<RMProfile />]} />}
       inlineStart={[]}
-      main={
-        <CmpCard inlineBorder>
-          <button>sign-in</button>
-        </CmpCard>
-      }
+      main={<CmpCard inlineBorder></CmpCard>}
       inlineEnd={[]}
     />
   );

@@ -277,6 +277,27 @@
           }
         }
       }
+    },
+    "recipes-manager-ui-specific": {
+      "root": "libs/recipes-manager/ui-specific",
+      "sourceRoot": "libs/recipes-manager/ui-specific/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/ui-specific/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager/ui-specific"],
+          "options": {
+            "jestConfig": "libs/recipes-manager/ui-specific/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

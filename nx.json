@@ -50,6 +50,9 @@
     },
     "recipes-manager-feature-index": {
       "tags": ["lib", "lib:feature"]
+    },
+    "recipes-manager-ui-specific": {
+      "tags": ["lib", "lib:specific"]
     }
   }
 }

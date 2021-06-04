@@ -1,3 +1,5 @@
+export * from './lib/cmp-avatar/CmpAvatar';
+export * from './lib/cmp-button/CmpButton';
 export * from './lib/form-text/FormText';
 export * from './lib/cmp-card/CmpCard';
 export * from './lib/layout-main/LayoutMain';

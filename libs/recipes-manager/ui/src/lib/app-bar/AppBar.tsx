@@ -4,10 +4,12 @@ import { css } from '@emotion/react';
 import { merge, mergeProps, pipe } from '@recipes-manager/util';
 import React from 'react';
 import { palette, PaletteTheme, spacing, SpacingTheme, ThemeContext } from '../../theme';
+import { CmpButton } from '../cmp-button/CmpButton';
 import { Typography } from '../typography/Typography';
 
 export interface AppBarProps {
   name: string;
+  actions?: React.ReactElement[];
 }
 
 type AppBarPropsExtended = AppBarProps & React.ComponentPropsWithRef<'div'>;
@@ -59,15 +61,26 @@ const getHrCss = ({ appBar }: AppBarTheme) => {
   return base;
 };
 
+const flexDivCss = css({
+  display: 'flex',
+});
+
+const actionsCss = css({
+  marginLeft: 'auto',
+});
+
 export const AppBar = React.forwardRef<HTMLDivElement, AppBarPropsExtended>(
   (props: AppBarPropsExtended, forwardedRef) => {
-    const { name, ...defaultHostProps } = props;
+    const { name, actions, ...defaultHostProps } = props;
     const theme = defaultTheme(React.useContext(ThemeContext));
     const hostProps = mergeProps(rootClass(theme), defaultHostProps);
     const hrCss = getHrCss(theme);
     return (
       <div ref={forwardedRef} {...hostProps}>
-        <Typography scale={'H3'}>{name}</Typography>
+        <div css={flexDivCss}>
+          <Typography scale={'H3'}>{name}</Typography>
+          <div css={actionsCss}>{actions}</div>
+        </div>
         <hr css={hrCss} />
       </div>
     );
