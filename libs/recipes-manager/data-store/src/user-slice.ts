@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from './store';
 
 interface UserState {
   accessToken: string;
@@ -9,7 +8,7 @@ interface UserState {
   uid: string;
 }
 
-interface UserDTO {
+export interface UserDTO {
   accessToken: string;
   displayName: string;
   email: string;
