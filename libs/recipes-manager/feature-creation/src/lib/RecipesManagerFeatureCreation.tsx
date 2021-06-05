@@ -7,7 +7,9 @@ import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
 /* eslint-disable-next-line */
-export interface RecipesManagerFeatureCreationProps {}
+export interface RecipesManagerFeatureCreationProps {
+  languages?: string[];
+}
 
 const FieldArray = ({ control, register, setValue, getValues }) => {
   const { fields, append, remove } = useFieldArray({
@@ -58,6 +60,7 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
   });
   const onSubmit = (data) => console.log(data);
   const recipeName = watch('name');
+  console.log('props', props);
   return (
     <LayoutMain
       appBar={
@@ -71,7 +74,17 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
         <CmpCard inlineBorder>
           <form css={formCss} onSubmit={handleSubmit(onSubmit)}>
             <FormText type="text" placeholder="Name" {...register('name', {})} />
-            <FormText type="text" placeholder="Language" {...register('lang', {})} />
+            <FormText
+              type="text"
+              list="languagesList"
+              placeholder="Language"
+              {...register('lang', {})}
+            />
+            <datalist id="languagesList">
+              {props.languages?.map((lang) => (
+                <option value={lang} />
+              ))}
+            </datalist>
             <input type="text" placeholder="Family" {...register('Family', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />
 

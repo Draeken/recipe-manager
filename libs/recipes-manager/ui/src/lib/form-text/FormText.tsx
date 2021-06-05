@@ -49,7 +49,6 @@ const rootClass = ({ formText }: FormTextTheme) => {
 };
 
 const inputClass = ({ formText }: FormTextTheme) => {
-  console.log('inputclass theme', formText);
   const base = css({
     width: '100%',
     border: 0,
