@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { AppBar, CmpCard, FormText, LayoutMain } from '@recipes-manager/ui';
-import { RMProfile } from '@recipes-manager/ui-specific';
+import { AppBar, CmpCard, FormPicker, FormText, LayoutMain } from '@recipes-manager/ui';
+import { AppProfile } from '@recipes-manager/ui-specific';
 import React from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 
@@ -58,7 +58,7 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
   const { control, register, handleSubmit, getValues, reset, setValue, watch } = useForm({
     mode: 'onBlur',
   });
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => console.log('submit', data);
   const recipeName = watch('name');
   console.log('props', props);
   return (
@@ -66,7 +66,7 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
       appBar={
         <AppBar
           name={'Recipe Creation' + (recipeName ? `: ${recipeName}` : '')}
-          actions={[<RMProfile />]}
+          actions={[<AppProfile />]}
         />
       }
       inlineStart={[]}
@@ -74,17 +74,13 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
         <CmpCard inlineBorder>
           <form css={formCss} onSubmit={handleSubmit(onSubmit)}>
             <FormText type="text" placeholder="Name" {...register('name', {})} />
-            <FormText
+            <FormPicker
               type="text"
-              list="languagesList"
+              listId="languagesList"
+              options={props.languages}
               placeholder="Language"
               {...register('lang', {})}
             />
-            <datalist id="languagesList">
-              {props.languages?.map((lang) => (
-                <option value={lang} />
-              ))}
-            </datalist>
             <input type="text" placeholder="Family" {...register('Family', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />
 

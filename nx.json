@@ -53,6 +53,9 @@
     },
     "recipes-manager-ui-specific": {
       "tags": ["lib", "lib:specific"]
+    },
+    "recipes-manager-api-feature-graphql": {
+      "tags": ["lib", "lib:api"]
     }
   }
 }

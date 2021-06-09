@@ -1,1 +1,1 @@
-export * from './rmProfile';
+export * from './AppProfile';

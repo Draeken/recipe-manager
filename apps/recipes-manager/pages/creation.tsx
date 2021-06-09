@@ -15,7 +15,14 @@ const getLanguages = () => {
 
 export async function getServerSideProps(context) {
   const [languages] = await getLanguages();
-  return { props: { languages: languages.map((l) => l.name) } };
+  return {
+    props: {
+      languages: languages.map((l) => {
+        console.log(l);
+        return { label: l.name, value: l[Datastore.KEY].id };
+      }),
+    },
+  };
 }
 
 export default RecipesManagerFeatureCreation;

@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/recipes-manager/util',
     '<rootDir>/libs/recipes-manager/feature-index',
     '<rootDir>/libs/recipes-manager/ui-specific',
+    '<rootDir>/libs/recipes-manager-api/feature-graphql',
   ],
 };

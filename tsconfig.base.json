@@ -24,7 +24,10 @@
       "@recipes-manager/util": ["libs/recipes-manager/util/src/index.ts"],
       "@recipes-manager/data-auth": ["libs/recipes-manager/data-auth/src/index.ts"],
       "@recipes-manager/main-feature-index": ["libs/recipes-manager/feature-index/src/index.ts"],
-      "@recipes-manager/ui-specific": ["libs/recipes-manager/ui-specific/src/index.ts"]
+      "@recipes-manager/ui-specific": ["libs/recipes-manager/ui-specific/src/index.ts"],
+      "@recipes-manager/recipes-manager-api/feature-graphql": [
+        "libs/recipes-manager-api/feature-graphql/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

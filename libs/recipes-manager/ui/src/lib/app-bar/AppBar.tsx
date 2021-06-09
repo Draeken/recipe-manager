@@ -5,7 +5,7 @@ import { merge, mergeProps, pipe } from '@recipes-manager/util';
 import React from 'react';
 import { palette, PaletteTheme, spacing, SpacingTheme, ThemeContext } from '../../theme';
 import { CmpButton } from '../cmp-button/CmpButton';
-import { Typography } from '../typography/Typography';
+import { Typography, TypographyProps } from '../typography/Typography';
 
 export interface AppBarProps {
   name: string;
@@ -75,10 +75,11 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarPropsExtended>(
     const theme = defaultTheme(React.useContext(ThemeContext));
     const hostProps = mergeProps(rootClass(theme), defaultHostProps);
     const hrCss = getHrCss(theme);
+    const h3Props = TypographyProps({ scale: 'H3', theme });
     return (
       <div ref={forwardedRef} {...hostProps}>
         <div css={flexDivCss}>
-          <Typography scale={'H3'}>{name}</Typography>
+          <h3 {...h3Props}>{name}</h3>
           <div css={actionsCss}>{actions}</div>
         </div>
         <hr css={hrCss} />

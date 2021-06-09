@@ -1,3 +1,4 @@
+export * from './lib/form-picker/FormPicker';
 export * from './lib/cmp-avatar/CmpAvatar';
 export * from './lib/cmp-button/CmpButton';
 export * from './lib/form-text/FormText';

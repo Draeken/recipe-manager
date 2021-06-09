@@ -298,6 +298,27 @@
           }
         }
       }
+    },
+    "recipes-manager-api-feature-graphql": {
+      "root": "libs/recipes-manager-api/feature-graphql",
+      "sourceRoot": "libs/recipes-manager-api/feature-graphql/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager-api/feature-graphql/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager-api/feature-graphql"],
+          "options": {
+            "jestConfig": "libs/recipes-manager-api/feature-graphql/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
