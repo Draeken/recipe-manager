@@ -66,7 +66,7 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
       appBar={
         <AppBar
           name={'Recipe Creation' + (recipeName ? `: ${recipeName}` : '')}
-          actions={[<AppProfile />]}
+          actions={[<AppProfile key="profile" />]}
         />
       }
       inlineStart={[]}

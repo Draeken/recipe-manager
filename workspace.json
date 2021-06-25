@@ -319,6 +319,19 @@
           }
         }
       }
+    },
+    "recipes-manager-util-test": {
+      "root": "libs/recipes-manager/util-test",
+      "sourceRoot": "libs/recipes-manager/util-test/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/util-test/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
     }
   }
 }

@@ -11,8 +11,18 @@ const getIdToken = (req): string => {
   return components.length > 1 ? components[1] : '';
 };
 
+const createLoaders = () => {
+  return {
+    
+  }
+}
+
 export const context = async ({ req }: { req: MicroRequest }) => {
-  const idToken = getIdToken(req);
-  const verified = await firebaseAdminApp.auth().verifyIdToken(idToken);
-  verified.uid;
+  try {
+    const idToken = getIdToken(req);
+    const verified = await firebaseAdminApp.auth().verifyIdToken(idToken);
+    return { userId: verified.uid }; //TODO: check firebase custom role
+  } catch (e) {
+    console.error('Error verifying user token', e);
+  }
 };

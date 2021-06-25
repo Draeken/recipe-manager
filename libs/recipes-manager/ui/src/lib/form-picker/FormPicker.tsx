@@ -31,18 +31,20 @@ const rootClass = ({ formPicker }: FormPickerTheme) => {
   return { css: base };
 };
 
-export const FormPicker = (props: FormPickerPropsExtended) => {
-  const { listId, options, ref: forwardedRef, ...defaultHostProps } = props;
-  const theme = defaultTheme(React.useContext(ThemeContext));
-  const hostProps = mergeProps(rootClass(theme), defaultHostProps);
-  return (
-    <>
-      <FormText ref={forwardedRef} list={listId} {...hostProps} />
-      <datalist id={listId}>
-        {options?.map((opt) => (
-          <option key={opt} value={opt} />
-        ))}
-      </datalist>
-    </>
-  );
-};
+export const FormPicker = React.forwardRef<HTMLInputElement, FormPickerPropsExtended>(
+  (props: FormPickerPropsExtended, forwardedRef) => {
+    const { listId, options, ...defaultHostProps } = props;
+    const theme = defaultTheme(React.useContext(ThemeContext));
+    const hostProps = mergeProps(rootClass(theme), defaultHostProps);
+    return (
+      <>
+        <FormText ref={forwardedRef} list={listId} {...hostProps} />
+        <datalist id={listId}>
+          {options?.map((opt) => (
+            <option key={opt} value={opt} />
+          ))}
+        </datalist>
+      </>
+    );
+  }
+);
