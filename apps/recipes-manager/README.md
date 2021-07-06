@@ -9,12 +9,12 @@ Output:
 ```javascript
 //class object
 {
-  parents: [classRef] // sweet products ; fruit products - similar to tags in usage
-  children: [classRef]
+  parents: [classRef], // sweet products ; fruit products - similar to tags in usage
+  children: [classRef],
   en: {
     names: ['class name'],
     desc: 'meaningful description'
-  }
+  },
   fr: {
     names: ['nom de classe'],
     desc: 'description pertinente'
@@ -57,7 +57,7 @@ Output:
     name: {
       en: 'temperature'
     }
-  }]
+  }],
   timeCost: 15, (s)
   verbs: {
     en: ["put"]
@@ -80,7 +80,7 @@ Output:
   },
   description: {
     en: "wait it to cook $$0", //$$ -> arg
-  }
+  },
   args: [{
     type: temperature | time | number | enum
     name: {
@@ -106,10 +106,11 @@ Output:
     quantity: {
       volume: 1000
     }
-  }]
+  }],
   inputs: [{
     class: classRef,
     query: queryRef,
+    ref: 'localRef',
     quantity: {
       volume: 250
     },
@@ -120,9 +121,10 @@ Output:
     }
   }],
   steps: [{
-    precondition: { //what if the condition varies greatly depending of which procedure is chose?
+    precondition: { //what if the condition varies greatly depending of which procedure is chose? - dependsOn -> after a step is done -> use operation's time cost
       ref: conditionRef,
-      time: 3600, (s) //aproximation
+      dependsOn: [stepIndex]
+      time: 3600, (s) //aproximation, maybe should be included in condition obj and determined with args
       args: []
     },
     inputs: [{
@@ -132,7 +134,7 @@ Output:
       }
     }],
     operation: {
-      ref: operationRef,
+      ref: operationRef, // could use operationClass instead of specific operation
       args: [],
     },
     outputAlias: ['product alias', 'byproduct alias'] //optional
