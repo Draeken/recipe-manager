@@ -77,7 +77,7 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   );
   const onMainPickerChange = useCallback(
     ({ name, value }: ValueNameForm) => {
-      mutate(`{ languages:${value} { label }}`, name, false);
+      mutate(`{ languages:${value} { label }}`, name, false); //Is it necessary?
       if (value) {
         setExpanded(false);
         onChange(value);
