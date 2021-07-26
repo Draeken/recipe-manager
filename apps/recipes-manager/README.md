@@ -28,7 +28,7 @@ Output:
 }
 
 //operation object
-// Should represent the same concept internotially. If the same verb is performed in a different way, it justifies a new operation (may be a kind of fork).
+// Should represent the same concept internationally. If the same verb is performed in a different way, it justifies a new operation (may be a kind of fork).
 {
   inputs: [
     {

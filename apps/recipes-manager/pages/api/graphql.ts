@@ -1,40 +1,5 @@
-import { ApolloServer, gql } from 'apollo-server-micro';
-
-const typeDefs = gql`
-  type Query {
-    users: [User!]!
-    languages: [Language!]!
-    classes(lang: String!): [Class!]!
-  }
-  type Mutation {
-    addLanguage(name: String): AddLanguageMutationResponse
-  }
-  interface MutationResponse {
-    code: String!
-    success: Boolean!
-    message: String!
-  }
-  type AddLanguageMutationResponse implements MutationResponse {
-    code: String!
-    success: Boolean!
-    message: String!
-    language: Language!
-  }
-  type Language {
-    id: ID
-    name: String
-  }
-  type User {
-    name: String
-  }
-  type Class {
-    parents: [ID!]!
-    children: [ID!]!
-    names: [String!]!
-    desc: [String!]!
-    " How to express dynamic key like 'en', 'fr' ? -> use parameter" 
-  }
-`;
+import { ApolloServer } from 'apollo-server-micro';
+import { typeDefs, context } from '@recipes-manager-api/feature-graphql';
 
 const resolvers = {
   Query: {
@@ -44,12 +9,27 @@ const resolvers = {
   },
 };
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({ typeDefs, resolvers, context });
+
+const startServer = apolloServer.start();
+
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  if (req.method === 'OPTIONS') {
+    res.end();
+    return false;
+  }
+
+  await startServer;
+  await apolloServer.createHandler({
+    path: '/api/graphql',
+  })(req, res);
+}
 
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-
-export default apolloServer.createHandler({ path: '/api/graphql' });
