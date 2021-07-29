@@ -1,15 +1,28 @@
+import GCloudDS from '@google-cloud/datastore';
+import { context, DatastoreSource, typeDefs } from '@recipes-manager-api/feature-graphql';
 import { ApolloServer } from 'apollo-server-micro';
-import { typeDefs, context } from '@recipes-manager-api/feature-graphql';
 
 const resolvers = {
   Query: {
     users(parent, args, context) {
       return [{ name: 'Nextjs' }];
     },
+    languages(_, __, { dataSources }) {
+      return dataSources.store.getAll();
+    },
   },
 };
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers, context });
+const datastore = new GCloudDS.Datastore();
+
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: context({ store: datastore }),
+  dataSources: () => ({
+    store: new DatastoreSource({ store: datastore }),
+  }),
+});
 
 const startServer = apolloServer.start();
 
