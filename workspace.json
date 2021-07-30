@@ -332,6 +332,27 @@
           }
         }
       }
+    },
+    "recipes-manager-data-graphql": {
+      "root": "libs/recipes-manager/data-graphql",
+      "sourceRoot": "libs/recipes-manager/data-graphql/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/recipes-manager/data-graphql/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/recipes-manager/data-graphql"],
+          "options": {
+            "jestConfig": "libs/recipes-manager/data-graphql/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

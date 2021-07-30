@@ -15,7 +15,17 @@ export class DatastoreSource extends DataSource {
   }
 
   async getAll() {
-    const result = await this.store.runQuery(this.store.createQuery('language'));
+    const result = await this.store.runQuery(this.store.createQuery('languages'));
     return result[0];
+  }
+
+  async addLanguage(name: string) {
+    const entity = {
+      key: this.store.key('languages'),
+      data: { name },
+    };
+    await this.store.insert(entity);
+    const id = entity.key.id;
+    return { name, id };
   }
 }

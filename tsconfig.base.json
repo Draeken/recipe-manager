@@ -28,7 +28,8 @@
       "@recipes-manager-api/feature-graphql": [
         "libs/recipes-manager-api/feature-graphql/src/index.ts"
       ],
-      "@recipes-manager/util-test": ["libs/recipes-manager/util-test/src/index.ts"]
+      "@recipes-manager/util-test": ["libs/recipes-manager/util-test/src/index.ts"],
+      "@recipes-manager/data-graphql": ["libs/recipes-manager/data-graphql/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

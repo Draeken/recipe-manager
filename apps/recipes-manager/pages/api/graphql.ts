@@ -11,6 +11,11 @@ const resolvers = {
       return dataSources.store.getAll();
     },
   },
+  Mutation: {
+    addLanguage: async (_, { name }: { name: string }, { dataSources }) => {
+      return dataSources.store.addLanguage(name);
+    },
+  },
 };
 
 const datastore = new GCloudDS.Datastore();

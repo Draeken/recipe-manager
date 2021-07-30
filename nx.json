@@ -59,6 +59,9 @@
     },
     "recipes-manager-util-test": {
       "tags": ["lib", "lib:test"]
+    },
+    "recipes-manager-data-graphql": {
+      "tags": ["lib", "lib:data"]
     }
   }
 }

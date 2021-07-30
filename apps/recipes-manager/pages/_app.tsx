@@ -1,5 +1,7 @@
+import { ApolloProvider } from '@apollo/client';
 import { getAuth, onAuthStateChanged } from '@firebase/auth';
 import { initializeFirebaseApp } from '@recipes-manager/data-auth';
+import { apolloClient } from '@recipes-manager/data-graphql';
 import { useAppDispatch } from '@recipes-manager/data-store/hooks';
 import store from '@recipes-manager/data-store/store';
 import { authChange, UserDTO } from '@recipes-manager/data-store/user-slice';
@@ -43,9 +45,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <div className="app">
       <Provider store={store}>
         <StoreConsumer>
-          <ThemeContext.Provider value={theme}>
-            <Component {...pageProps} />
-          </ThemeContext.Provider>
+          <ApolloProvider client={apolloClient}>
+            <ThemeContext.Provider value={theme}>
+              <Component {...pageProps} />
+            </ThemeContext.Provider>
+          </ApolloProvider>
         </StoreConsumer>
       </Provider>
     </div>
