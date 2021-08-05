@@ -1,8 +1,7 @@
-import { fetcherGraphQL } from '@recipes-manager/data-auth';
+import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import { CmpButton, FormPicker, FormText } from '@recipes-manager/ui';
 import { useDebounce } from '@recipes-manager/util';
 import React, { useCallback, useEffect, useState } from 'react';
-import useSWR, { mutate } from 'swr';
 
 export interface Language {
   value: string;
@@ -29,15 +28,27 @@ interface FormPickerSuggest {
   onChange: (vl: ValueNameForm) => void;
 }
 
+const GET_LANGUAUGES = gql`
+  query GetLanguages {
+    languages {
+      id
+      name
+    }
+  }
+`;
+
 export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
   const [internalVal, setInternalVal] = useState(name || '');
+  const [getLanguages, { data: options }] = useLazyQuery<ValueNameForm[]>(GET_LANGUAUGES);
 
   // suggestion based on what user type
   const debouncedVal = useDebounce(internalVal, 500);
-  const { data: options } = useSWR<ValueNameForm[]>(
-    () => (debouncedVal !== name ? '{ languages { label, id }}' : null),
-    fetcherGraphQL
-  );
+  useEffect(() => {
+    if (debouncedVal === name) {
+      return;
+    }
+    getLanguages();
+  }, [getLanguages, debouncedVal, name]);
 
   useEffect(() => {
     setInternalVal(name || '');
@@ -69,15 +80,54 @@ export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
   );
 };
 
+const GET_LANGUAGE_LABEL = gql`
+  query Language($id: ID!) {
+    language(id: $id) {
+      label
+    }
+  }
+`;
+
+const ADD_LANGUAGE = gql`
+  mutation AddLanguage($name: String!) {
+    addLanguage($name)
+  }
+`;
+
 export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   const [expanded, setExpanded] = useState(true);
-  const { data: name } = useSWR<string>( //would require catching and batching these requests from many inputs
-    value ? `{ languages:${value} { label }}` : null,
-    fetcherGraphQL
-  );
+  const [addLanguage] = useMutation(ADD_LANGUAGE, {
+    update(cache, { data: { addLanguage } }) {
+      cache.modify({
+        fields: {
+          languages(existingLanguages = []) {
+            const newLanguageRef = cache.writeFragment({
+              data: addLanguage,
+              fragment: gql`
+                fragment NewLanguage on Language {
+                  id
+                  name
+                }
+              `,
+            });
+            return [...existingLanguages, newLanguageRef];
+          },
+        },
+      });
+    },
+  });
+
+  //would require catching and batching these requests from many inputs
+  const [getLanguageLabel, { data: name }] = useLazyQuery<string>(GET_LANGUAGE_LABEL);
+  useEffect(() => {
+    if (!value) {
+      return;
+    }
+    getLanguageLabel({ variables: { id: value } });
+  }, [getLanguageLabel, value]);
+
   const onMainPickerChange = useCallback(
-    ({ name, value }: ValueNameForm) => {
-      mutate(`{ languages:${value} { label }}`, name, false); //Is it necessary?
+    ({ value }: ValueNameForm) => {
       if (value) {
         setExpanded(false);
         onChange(value);
@@ -90,9 +140,8 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
 
   // proceed to class creation, retrieve class's ID (value)
   const onConfirm = () => {
-    fetcher('/api/language').then((valueLabel: ValueName) => {
-      mutate(`{ languages:${valueLabel.value} { label }}`, valueLabel.name, false);
-      onChange(valueLabel.value);
+    addLanguage({ variables: { name: 'user typed name from FormText' } }).then((value) => {
+      onChange(value.data?.language?.id);
     });
   };
   return (

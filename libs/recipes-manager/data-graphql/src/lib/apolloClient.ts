@@ -4,7 +4,7 @@ import { fetcherToJson } from '@recipes-manager/data-auth';
 export const apolloClient = new ApolloClient({
   ssrMode: typeof window === 'undefined',
   link: new HttpLink({
-    uri: '/graphql',
+    uri: '/api/graphql',
     credentials: 'same-origin',
     fetch: fetcherToJson,
   }),
