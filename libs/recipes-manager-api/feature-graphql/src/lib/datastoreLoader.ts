@@ -1,5 +1,5 @@
-import GCloudDS = require('@google-cloud/datastore');
-import DataLoader = require('dataloader');
+import * as GCloudDS from '@google-cloud/datastore';
+import * as DataLoader from 'dataloader';
 
 export const createLoader = (store: GCloudDS.Datastore) =>
   new DataLoader<GCloudDS.Key, any, string>(

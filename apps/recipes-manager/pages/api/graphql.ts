@@ -1,4 +1,4 @@
-import GCloudDS from '@google-cloud/datastore';
+import * as GCloudDS from '@google-cloud/datastore';
 import { context, DatastoreSource, typeDefs } from '@recipes-manager-api/feature-graphql';
 import { ApolloServer } from 'apollo-server-micro';
 
@@ -9,6 +9,9 @@ const resolvers = {
     },
     languages(_, __, { dataSources }) {
       return dataSources.store.getAll();
+    },
+    language(_, args, { dataSources }) {
+      return dataSources.store.getOne(args.id);
     },
   },
   Mutation: {

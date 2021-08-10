@@ -4,6 +4,7 @@ export const typeDefs = gql`
   type Query {
     users: [User!]!
     languages: [Language!]!
+    language(id: ID): Language!
     classes(lang: String!): [Class!]!
   }
   type Mutation {
@@ -32,9 +33,9 @@ export const typeDefs = gql`
     children: [ID!]!
     names: [String!]!
     desc: [String!]!
-    " How to express dynamic key like 'en', 'fr' ? -> use parameter" 
   }
   type Specific {
     desc: String!
   }
 `;
+// How to express dynamic key like 'en', 'fr' ? -> use parameter

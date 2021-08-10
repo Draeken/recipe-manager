@@ -34,6 +34,8 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+recipe-and-products-manager-firebase-adminsdk-g8jkb-db0a45a96a.json
+\.export_credentials.zsh
 
 # System Files
 .DS_Store

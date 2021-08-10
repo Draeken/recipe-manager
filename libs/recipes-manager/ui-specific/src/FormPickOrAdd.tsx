@@ -102,7 +102,7 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
         fields: {
           languages(existingLanguages = []) {
             const newLanguageRef = cache.writeFragment({
-              data: addLanguage,
+              data: addLanguage.language,
               fragment: gql`
                 fragment NewLanguage on Language {
                   id

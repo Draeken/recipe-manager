@@ -1,5 +1,7 @@
 import { DataSource } from 'apollo-datasource';
-import GCloudDS = require('@google-cloud/datastore');
+import * as GCloudDS from '@google-cloud/datastore';
+
+const withKey = (entity) => ({ ...entity, id: JSON.stringify(entity[GCloudDS.Datastore.KEY]) });
 
 export class DatastoreSource extends DataSource {
   private context;
@@ -16,7 +18,12 @@ export class DatastoreSource extends DataSource {
 
   async getAll() {
     const result = await this.store.runQuery(this.store.createQuery('languages'));
-    return result[0];
+    return result[0].map(withKey);
+  }
+
+  async getOne(id: string) {
+    const result = await this.store.get(JSON.parse(id));
+    return withKey(result[0]);
   }
 
   async addLanguage(name: string) {

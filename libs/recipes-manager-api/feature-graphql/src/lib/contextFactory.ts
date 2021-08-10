@@ -15,6 +15,9 @@ const getIdToken = (req): string => {
 export const context = ({ store }) => async ({ req }: { req: MicroRequest }) => {
   try {
     const idToken = getIdToken(req);
+    if (!idToken) {
+      return { dataloader: createLoader(store) };
+    }
     const verified = await firebaseAdminApp.auth().verifyIdToken(idToken);
     return { userId: verified.uid, dataloader: createLoader(store) }; //TODO: check firebase custom role
   } catch (e) {
