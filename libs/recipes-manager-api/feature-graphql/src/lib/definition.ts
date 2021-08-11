@@ -13,13 +13,13 @@ export const typeDefs = gql`
   interface MutationResponse {
     code: String!
     success: Boolean!
-    message: String!
+    message: String
   }
   type AddLanguageMutationResponse implements MutationResponse {
     code: String!
     success: Boolean!
-    message: String!
-    language: Language!
+    message: String
+    language: Language
   }
   type Language {
     id: ID

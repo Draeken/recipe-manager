@@ -1,5 +1,5 @@
-import { DataSource } from 'apollo-datasource';
 import * as GCloudDS from '@google-cloud/datastore';
+import { DataSource } from 'apollo-datasource';
 
 const withKey = (entity) => ({ ...entity, id: JSON.stringify(entity[GCloudDS.Datastore.KEY]) });
 
@@ -31,8 +31,22 @@ export class DatastoreSource extends DataSource {
       key: this.store.key('languages'),
       data: { name },
     };
-    await this.store.insert(entity);
-    const id = entity.key.id;
-    return { name, id };
+    try {
+      const [res] = await this.store.insert(entity);
+      console.log('response', res);
+      const id = entity.key.id;
+      return {
+        code: 200,
+        success: true,
+        language: { name, id },
+      };
+    } catch (e) {
+      console.log('response error', e);
+      return {
+        code: 500,
+        success: false,
+        message: JSON.stringify(e),
+      };
+    }
   }
 }

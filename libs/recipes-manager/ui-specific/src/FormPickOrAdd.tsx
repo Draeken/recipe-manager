@@ -1,7 +1,7 @@
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 import { CmpButton, FormPicker, FormText } from '@recipes-manager/ui';
 import { useDebounce } from '@recipes-manager/util';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface Language {
   id: string;
@@ -63,9 +63,6 @@ export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
   };
 
   const onBlur = () => {
-    if (internalVal === name) {
-      return;
-    }
     const valueName = (options || []).find((o) => o.name === internalVal);
     onChange({ name: internalVal, value: valueName?.id });
   };
@@ -93,12 +90,18 @@ const GET_LANGUAGE_LABEL = gql`
 
 const ADD_LANGUAGE = gql`
   mutation AddLanguage($name: String!) {
-    addLanguage(name: $name)
+    addLanguage(name: $name) {
+      language {
+        id
+        name
+      }
+    }
   }
 `;
 
 export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   const [expanded, setExpanded] = useState(false);
+  const newName = useRef<string>();
   const [addLanguage] = useMutation(ADD_LANGUAGE, {
     update(cache, { data: { addLanguage } }) {
       cache.modify({
@@ -132,7 +135,8 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   }, [getLanguageLabel, value]);
 
   const onMainPickerChange = useCallback(
-    ({ value }: ValueNameForm) => {
+    ({ value, name }: ValueNameForm) => {
+      newName.current = name;
       if (value) {
         setExpanded(false);
         onChange(value);
@@ -145,7 +149,8 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
 
   // proceed to class creation, retrieve class's ID (value)
   const onConfirm = () => {
-    addLanguage({ variables: { name: 'user typed name from FormText' } }).then((value) => {
+    addLanguage({ variables: { name: newName.current } }).then((value) => {
+      setExpanded(false);
       onChange(value.data?.language?.id);
     });
   };
