@@ -4,8 +4,8 @@ import { useDebounce } from '@recipes-manager/util';
 import React, { useCallback, useEffect, useState } from 'react';
 
 export interface Language {
-  value: string;
-  label: string;
+  id: string;
+  name: string;
 }
 
 export interface ValueName {
@@ -39,8 +39,11 @@ const GET_LANGUAUGES = gql`
 
 export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
   const [internalVal, setInternalVal] = useState(name || '');
-  const [getLanguages, { data: options }] = useLazyQuery<ValueNameForm[]>(GET_LANGUAUGES);
-
+  const [getLanguages, { data, error }] = useLazyQuery<{ languages: Language[] }>(GET_LANGUAUGES);
+  const options = data?.languages;
+  if (error) {
+    console.log('errors', error);
+  }
   // suggestion based on what user type
   const debouncedVal = useDebounce(internalVal, 500);
   useEffect(() => {
@@ -64,7 +67,7 @@ export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
       return;
     }
     const valueName = (options || []).find((o) => o.name === internalVal);
-    onChange({ name: internalVal, value: valueName?.value });
+    onChange({ name: internalVal, value: valueName?.id });
   };
 
   return (
@@ -83,19 +86,19 @@ export const FormPickerSuggest = ({ name, onChange }: FormPickerSuggest) => {
 const GET_LANGUAGE_LABEL = gql`
   query Language($id: ID!) {
     language(id: $id) {
-      label
+      name
     }
   }
 `;
 
 const ADD_LANGUAGE = gql`
   mutation AddLanguage($name: String!) {
-    addLanguage($name)
+    addLanguage(name: $name)
   }
 `;
 
 export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const [addLanguage] = useMutation(ADD_LANGUAGE, {
     update(cache, { data: { addLanguage } }) {
       cache.modify({
@@ -118,7 +121,9 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   });
 
   //would require catching and batching these requests from many inputs
-  const [getLanguageLabel, { data: name }] = useLazyQuery<string>(GET_LANGUAGE_LABEL);
+  const [getLanguageLabel, { data }] = useLazyQuery<{ language: { name: string } }>(
+    GET_LANGUAGE_LABEL
+  );
   useEffect(() => {
     if (!value) {
       return;
@@ -146,7 +151,7 @@ export const FormLanguagePicker = ({ value, onChange }: FormLanguageProps) => {
   };
   return (
     <fieldset>
-      <FormPickerSuggest onChange={onMainPickerChange} name={name} />
+      <FormPickerSuggest onChange={onMainPickerChange} name={data?.language?.name} />
       {expanded && (
         <>
           <FormText required type="text" placeholder="short description" />

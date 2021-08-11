@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start-dev": "nx serve recipes-manager --with-deps --port=8080",
+    "start-dev": "GOOGLE_APPLICATION_CREDENTIALS='/home/draeken/Project/recipes-manager/recipe-and-products-manager-firebase-adminsdk-g8jkb-db0a45a96a.json' nx serve recipes-manager --with-deps --port=8080",
     "start": "nx serve recipes-manager --with-deps --port=8080 --no-dev",
     "build": "nx build recipes-manager --prod --progress --verbose",
     "test": "nx test",

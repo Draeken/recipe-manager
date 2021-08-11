@@ -1,15 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from '@emotion/react';
-import { AppBar, CmpCard, FormPicker, FormText, LayoutMain } from '@recipes-manager/ui';
-import { AppProfile } from '@recipes-manager/ui-specific';
+import { AppBar, CmpCard, FormText, LayoutMain } from '@recipes-manager/ui';
+import { AppProfile, FormLanguagePicker } from '@recipes-manager/ui-specific';
 import React from 'react';
-import { useFieldArray, useForm } from 'react-hook-form';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 
 /* eslint-disable-next-line */
-export interface RecipesManagerFeatureCreationProps {
-  languages?: string[];
-}
+export interface RecipesManagerFeatureCreationProps {}
 
 const FieldArray = ({ control, register, setValue, getValues }) => {
   const { fields, append, remove } = useFieldArray({
@@ -60,7 +58,6 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
   });
   const onSubmit = (data) => console.log('submit', data);
   const recipeName = watch('name');
-  console.log('props', props);
   return (
     <LayoutMain
       appBar={
@@ -74,12 +71,10 @@ export function RecipesManagerFeatureCreation(props: RecipesManagerFeatureCreati
         <CmpCard inlineBorder>
           <form css={formCss} onSubmit={handleSubmit(onSubmit)}>
             <FormText type="text" placeholder="Name" {...register('name', {})} />
-            <FormPicker
-              type="text"
-              listId="languagesList"
-              options={props.languages}
-              placeholder="Language"
-              {...register('lang', {})}
+            <Controller
+              name="lang"
+              control={control}
+              render={({ field }) => <FormLanguagePicker {...field} />}
             />
             <input type="text" placeholder="Family" {...register('Family', {})} />
             <input type="number" placeholder="Serving" {...register('Serving', {})} />
